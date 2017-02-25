@@ -1,0 +1,11 @@
+## List
+hdfs dfs -rm -R output/handsontrain/sqoop/country
+
+## Remove
+hdfs dfs -rm -R output/handsontrain/sqoop/country
+
+## Empty recycle bin
+hdfs dfs -expunge
+
+## Make dir
+hdfs dfs -mkdir output/handsontrain/sqoop/world

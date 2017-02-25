@@ -1,0 +1,26 @@
+## List tables
+sqoop-list-tables --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --username root --password-file pwdfile
+
+## Eval
+sqoop-eval -e "select count(*) from city" --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --username root --password-file pwdfile
+
+## Import
+sqoop-import --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --target-dir output/handsontrain/sqoop/country -table country --username root --password-file pwdfile
+
+## Import with one mapper
+sqoop-import --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --target-dir output/handsontrain/sqoop/country -table country --username root --password-file pwdfile --num-mappers 1
+
+## Import with one mapper and with tab-delimited records
+sqoop-import --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --target-dir output/handsontrain/sqoop/country -table country --username root --password-file pwdfile --num-mappers 1 --fields-terminated-by '\t'
+
+## Import with one mapper as an Avro file
+sqoop-import --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --target-dir output/handsontrain/sqoop/country -table country --username root --password-file pwdfile --as-avrodatafile --mapreduce-job-name SqoopJobAvro -m 1 
+
+## Import with one mapper as an Parquet file
+sqoop-import --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --target-dir output/handsontrain/sqoop/country -table country --username root --password-file pwdfile --as-parquetfile --mapreduce-job-name SqoopJobParquet -m 1
+
+## Import with where clause
+sqoop-import --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --target-dir output/handsontrain/sqoop/country -table country --username root --password-file pwdfile --where "select count(*) from country where code = 'USA'"
+
+## Import all tables in Avro format
+sqoop-import-all-tables --connect jdbc:mysql://iop-bi-master.imdemocloud.com:3306/world --warehouse-dir output/handsontrain/sqoop/world --mapreduce-job-name SqoopJobAllWorldTables --as-avrodatafile --username root --password-file pwdfile
