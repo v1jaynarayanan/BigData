@@ -1,0 +1,5 @@
+hdfs dfs -mkdir -p output/handson_train/flume/pystock_data
+hdfs dfs -mkdir -p output/handson_train/flume/pystock_data/chkpint_dir
+hdfs dfs -mkdir -p output/handson_train/flume/pystock_data/datadir
+
+flume-ng agent --name StockPricesAgent --conf-file StockPricesAgent.properties --classpath flume-sources-1.0-SNAPSHOT.jar
